@@ -12,3 +12,8 @@ npm-debug.log
 yarn-error.log
 /docker
 .DS_Store
+composer.json
+composer.lock
+package-lock.json
+package.json
+webpack.mix.js
