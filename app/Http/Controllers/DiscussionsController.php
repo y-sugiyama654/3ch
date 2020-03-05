@@ -52,18 +52,20 @@ class DiscussionsController extends Controller
 
         session()->flash('success', 'Discussion posted.');
 
-        return redirect(route('discussion.index'));
+        return redirect(route('discussions.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Discussion $discussion
+     * @return void
      */
-    public function show($id)
+    public function show(Discussion $discussion)
     {
-        //
+        return view('discussions.show', [
+           'discussion' => $discussion
+        ]);
     }
 
     /**
