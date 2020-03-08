@@ -17,7 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-        .btn-info {
+        .btn-info, .badge-info{
             color: #fff;
         }
     </style>
@@ -40,9 +40,10 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route('users.notifications') }}" class="nav-link">
                                     <span class="badge badge-info">
                                         {{ auth()->user()->unreadNotifications->count() }}
+                                        Unread Notifications
                                     </span>
                                 </a>
                             </li>
