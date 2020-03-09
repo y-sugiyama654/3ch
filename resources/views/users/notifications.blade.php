@@ -13,6 +13,12 @@
                             <a href="{{ route('discussions.show', $notification->data['discussion']['slug']) }}" class="btn btn-sm btn-info float-right">View Discussion</a>
                         @endif
                     </li>
+                    <li class="list-group-item">
+                        @if($notification->type === 'App\Notifications\ReplyMarkedAsBestReply')
+                            Your Reply To Doscussion <strong>{{ $notification->data['discussion']['title'] }}</strong> Was Marked As Best Reply.
+                            <a href="{{ route('discussions.show', $notification->data['discussion']['slug']) }}" class="btn btn-sm btn-info float-right">View Discussion</a>
+                        @endif
+                    </li>
                 @endforeach
             </ul>
         </div>
