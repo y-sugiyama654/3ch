@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('discussions.index') }}">Discussions</a>
+                    <a href="<?php echo url("/login/github"); ?>" >Github</a>
                 </div>
             </div>
         </div>
