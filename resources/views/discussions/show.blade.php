@@ -56,6 +56,13 @@
         <div class="card-body">
             {!! $reply->content !!}
         </div>
+        <div class="card-footer">
+            @if($reply->is_liked_by_auth_user())
+                <a href="" class="btn btn-danger btn-sm">Unlike</a>
+            @else
+                <a href="" class="btn btn-success btn-sm">Like</a>
+            @endif
+        </div>
     </div>
 @endforeach
 {{ $discussion->replies()->paginate(3)->links() }}
