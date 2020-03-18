@@ -32,3 +32,6 @@ Route::post('discussions/{discussion}/replies/{reply}/mark-as-best-reply', 'Disc
 
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/callback/github', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('/reply/like/{id}', 'RepliesController@like')->name('reply.like');
+Route::get('/reply/unlike/{id}', 'RepliesController@unlike')->name('reply.unlike');
