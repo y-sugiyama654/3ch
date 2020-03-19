@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class RepliesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
+    }
+
     /**
      * Display a listing of the resource.
      *
