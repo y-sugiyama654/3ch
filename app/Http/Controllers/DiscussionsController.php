@@ -22,7 +22,7 @@ class DiscussionsController extends Controller
     public function index()
     {
         return view('discussions.index', [
-            'discussions' => Discussion::filterByChannels()->paginate(5)
+            'discussions' => Discussion::filterByChannels()->paginate(5),
         ]);
     }
 
