@@ -21,6 +21,11 @@ class Discussion extends Model
         return $this->hasMany(Reply::class);
     }
 
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
+
     public function bestReply()
     {
         return $this->belongsTo(Reply::class, 'reply_id');
