@@ -10,6 +10,11 @@
             <strong>{!! $discussion->title !!}</strong>
         </div>
     </div>
+    <div class="card-footer">
+        <div class="">
+            <i class="fas fa-comment-dots"><span class="ml-2">{{ $discussion->replies->count() }}</span></i>
+        </div>
+    </div>
 </div>
 @endforeach
 

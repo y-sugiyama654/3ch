@@ -127,6 +127,7 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://kit.fontawesome.com/75cdeca7c7.js" crossorigin="anonymous"></script>
     @yield('script')
 </body>
 </html>
