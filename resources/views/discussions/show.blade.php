@@ -31,6 +31,14 @@
             </div>
         @endif
     </div>
+    <div class="card-footer d-flex justify-content-between">
+        <div>
+            <i class="fas fa-comment-dots"><span class="ml-2">{{ $discussion->replies->count() }}</span></i>
+        </div>
+        <div>
+            <a href="{{ route('discussions.index') }}?channel={{ $discussion->channel->slug }}" class="btn btn-secondary btn-sm">{{ $discussion->channel->name }}</a>
+        </div>
+    </div>
 </div>
 
 @foreach($discussion->replies()->paginate(3) as $reply)
