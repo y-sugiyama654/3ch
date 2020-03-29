@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Notifications\ReplyMarkedAsBestReply;
+use Illuminate\Support\Facades\Auth;
 
 class Discussion extends Model
 {
@@ -24,6 +25,11 @@ class Discussion extends Model
     public function channel()
     {
         return $this->belongsTo(Channel::class);
+    }
+
+    public function watchers()
+    {
+        return $this->hasMany(Watcher::class);
     }
 
     public function bestReply()
@@ -61,4 +67,21 @@ class Discussion extends Model
 
         return $builder;
     }
+    public function is_being_watched_by_auth_user()
+    {
+        $id = Auth::id();
+
+        $watchersIds = array();
+
+        foreach($this->watchers as $watcher) {
+            array_push($watchersIds, $watcher->user_id);
+        }
+
+        if (in_array($id, $watchersIds)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
