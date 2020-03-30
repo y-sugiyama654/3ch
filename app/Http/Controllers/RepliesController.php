@@ -6,7 +6,9 @@ use App\Discussion;
 use App\Http\Requests\CreateDiscussionRequest;
 use App\Http\Requests\CreateReplyRequest;
 use App\Like;
+use Notification;
 use App\Notifications\NewReplyAdded;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,9 +52,19 @@ class RepliesController extends Controller
             'discussion_id' => $discussion->id,
         ]);
 
+        // ディスカッションの投稿者に通知メッセージを送信
         if ($discussion->author->id != auth()->user()->id) {
             $discussion->author->notify(new NewReplyAdded($discussion));
         }
+
+        // ディスカッションのウォッチャーに通知メッセージを送信
+        $watchers = array();
+
+        foreach($discussion->watchers as $watcher) {
+            array_push($watchers, User::find($watcher->user_id));
+        }
+
+        Notification::send($watchers, new NewReplyAdded($discussion));
 
         session()->flash('success', 'Reply Added.');
 
