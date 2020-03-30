@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth', 'can:allUser']], function () {
 
     Route::get('/reply/like/{id}', 'RepliesController@like')->name('reply.like');
     Route::get('/reply/unlike/{id}', 'RepliesController@unlike')->name('reply.unlike');
+
+    Route::get('/discussion/watch/{id}', 'WatchersController@watch')->name('discussions.watch');
+    Route::get('/discussion/unwatch/{id}', 'WatchersController@unwatch')->name('discussions.unwatch');
 });
 
 // 管理者対象権限
