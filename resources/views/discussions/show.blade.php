@@ -14,6 +14,8 @@
 
         <hr>
 
+        <p class="text-right">{{ $discussion->created_at->diffForHumans() }}</p>
+
         @if($discussion->bestReply)
             <div class="text-center" style="padding: 30px;">
                 <h3 class="text-center">BEST ANSWER</h3>
@@ -22,7 +24,7 @@
                         <div class="d-flex justify-content-between">
                             <div>
                                 <img width="40px" height="40px" style="border-radius: 50%" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
-                                <span>{{ $discussion->bestReply->owner->name }}</span>
+                                <span class="ml-2 mr-2 font-weight-bold">{{ $discussion->bestReply->owner->name }}</span><span><i class="fas fa-parking">({{ $discussion->bestReply->owner->point }})</i></span>
                             </div>
                         </div>
                     </div>
@@ -49,7 +51,7 @@
             <div class="d-flex justify-content-between">
                 <div>
                     <img height="40px" width="40px" style="border-radius: 50%" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
-                    <span>{{ $reply->owner->name }}</span>
+                    <span class="ml-2 mr-2 font-weight-bold">{{ $reply->owner->name }}</span><span><i class="fas fa-parking">({{ $reply->owner->point }})</i></span>
                 </div>
                 <div>
                     @auth

@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 
 class RepliesController extends Controller
 {
+    /** リプライ時の加算ポイント
+     */
+    const REPLY_POINT = 25;
+
     public function __construct()
     {
         $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
@@ -47,10 +51,12 @@ class RepliesController extends Controller
      */
     public function store(CreateReplyRequest $request, Discussion $discussion)
     {
-        auth()->user()->replies()->create([
+        $reply = auth()->user()->replies()->create([
             'content' => $request->content,
             'discussion_id' => $discussion->id,
         ]);
+
+        $this->_addExperiencePoint($reply);
 
         // ディスカッションの投稿者に通知メッセージを送信
         if ($discussion->author->id != auth()->user()->id) {
@@ -69,6 +75,12 @@ class RepliesController extends Controller
         session()->flash('success', 'Reply Added.');
 
         return redirect()->back();
+    }
+
+    private function _addExperiencePoint($reply)
+    {
+        $reply->owner->point += self::REPLY_POINT;
+        $reply->owner->save();
     }
 
     /**

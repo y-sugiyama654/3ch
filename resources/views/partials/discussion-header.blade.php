@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between">
         <div>
             <img width="40px" height="40px" style="border-radius: 50%" src="{{ Gravatar::src($discussion->author->email) }}" alt="">
-            <span class="ml-2 font-weight-bold">{{ $discussion->author->name }}, {{ $discussion->created_at->diffForHumans() }}</span>
+            <span class="ml-2 mr-2 font-weight-bold">{{ $discussion->author->name }}</span><span><i class="fas fa-parking">({{ $discussion->author->point }})</i></span>
         </div>
         <div>
             @if (request()->path() == 'discussions')
