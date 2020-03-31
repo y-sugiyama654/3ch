@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class Discussion extends Model
 {
+    /** ベストアンサー選出時の加算ポイント */
+    const BEST_ANSWER_POINT = 100;
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -48,11 +51,19 @@ class Discussion extends Model
             'reply_id' => $reply->id,
         ]);
 
+        $this->_addExperiencePoint($reply);
+
         if ($reply->owner->id === $this->author->id) {
             return;
         }
 
         $reply->owner->notify(new ReplyMarkedAsBestReply($reply->discussion));
+    }
+
+    private function _addExperiencePoint($reply)
+    {
+        $reply->owner->point += self::BEST_ANSWER_POINT;
+        $reply->owner->save();
     }
 
     public function scopeFilterByChannels($builder)
