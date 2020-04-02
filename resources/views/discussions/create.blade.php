@@ -9,12 +9,12 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" value="">
+                <input type="text" class="form-control" value="{{ old('title') }}" name="title" value="">
             </div>
 
             <div class="form-froup">
                 <label for="content">Content</label>
-                <input id="content" type="hidden" name="content">
+                <input id="content" type="hidden" name="content" value="{{ old('content') }}">
                 <trix-editor input="content"></trix-editor>
             </div>
 
@@ -22,7 +22,7 @@
                 <label for="channel">Channel</label>
                 <select name="channel" id="channel" class="form-control">
                     @foreach($channels as $channel)
-                        <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                        <option value="{{ $channel->id }}" @if(old('channel') == $channel->id) selected  @endif>{{ $channel->name }}</option>
                     @endforeach
                 </select>
             </div>
