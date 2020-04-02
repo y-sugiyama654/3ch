@@ -34,7 +34,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -90,6 +89,13 @@
         </nav>
         @if(!in_array(request()->path(), ['login', 'register', 'password/email,', 'password/reset']))
             <main class="container py-4">
+                @if($errors->count() > 0)
+                    <div class="mb-3">
+                        @foreach($errors->all() as $error)
+                            <li class="list-group-item text-danger">{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-4">
                         @auth
