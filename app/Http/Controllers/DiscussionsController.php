@@ -44,12 +44,19 @@ class DiscussionsController extends Controller
      */
     public function store(CreateDiscussionRequest $request)
     {
-        auth()->user()->discussion()->create([
+        $discussion = auth()->user()->discussion()->create([
             'title' => $request->title,
             'slug' => str_slug($request->title),
             'content' => $request['content'],
             'channel_id' => $request->channel
         ]);
+
+        // slugがnullの場合はdiscussion-XXを代わりに代入する(XXがdiscussionのid)
+        if (empty($discussion->slug)) {
+            $discussionId = $discussion->id;
+            $discussion->slug = 'discussion-' . $discussionId;
+            $discussion->save();
+        }
 
         session()->flash('success', 'Discussion posted.');
 
