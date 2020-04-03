@@ -8,6 +8,11 @@
     <div class="card-body">
         <div class="text-center">
             <strong>{!! $discussion->title !!}</strong>
+
+        </div>
+        <hr>
+        <div class="text-right">
+            <span>{{ $discussion->created_at->diffForHumans() }}</span>
         </div>
     </div>
     <div class="card-footer d-flex justify-content-between">
