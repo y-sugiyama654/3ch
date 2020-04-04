@@ -95,4 +95,18 @@ class Discussion extends Model
         }
     }
 
+    public function hasBestAnswer()
+    {
+        $result = false;
+        foreach($this->replies as $reply)
+        {
+            if($reply->discussion_id) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
 }
