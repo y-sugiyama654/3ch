@@ -1,0 +1,56 @@
+.ribbon18-wrapper {
+    display: block;
+    position: relative;
+    margin: 15px auto;
+    padding: 10px 0;
+    width: 300px;
+    height: 150px;
+    background: #f1f1f1;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.14);
+    box-sizing: border-box;
+}
+
+.ribbon18-content {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 89px;
+    height: 91px;
+    overflow: hidden;
+}
+
+.ribbon18 {
+    display: inline-block;
+    position: absolute;
+    padding: 7px 0;
+    left: -23px;
+    top: 22px;
+    width: 160px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 16px;
+    background: linear-gradient(to right, #e83929 0%,#e8685d 100%);
+    color: #fff;
+    text-shadow: 0 2px 2px #e8938b;
+    letter-spacing: 0.05em;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ribbon18:before, .ribbon18:after {
+    position: absolute;
+    content: "";
+    border-top: 4px solid #d3381c;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    bottom: -4px;
+}
+
+.ribbon18:before {
+    left: 14px;
+}
+
+.ribbon18:after {
+    right: 18px;
+}
