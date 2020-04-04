@@ -95,6 +95,11 @@ class Discussion extends Model
         }
     }
 
+    /**
+     * 投稿にベストアンサーがついているか確認
+     *
+     * @return bool true:ベストアンサー済 false:ベストアンサー未
+     */
     public function hasBestAnswer()
     {
         $result = false;
