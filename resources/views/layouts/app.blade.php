@@ -104,9 +104,51 @@
                         @else
                             <a href="{{ route('login') }}" style="width: 100%" class="btn btn-info my-2">Sign in to add discussion</a>
                         @endauth
+
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            マイページ
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <br>
+
                         <div class="card">
                             <div class="card-header">
-                                Channels
+                                フィルタリング
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="/discussions?filter=me">
+                                            マイチャンネル
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="/discussions?filter=solved">
+                                            解決済み
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="/discussions?filter=unsolved">
+                                            受付中
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="card">
+                            <div class="card-header">
+                                チャンネル
                             </div>
                             <div class="card-body">
                                 <ul class="list-group">
