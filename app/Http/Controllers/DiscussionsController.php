@@ -6,6 +6,8 @@ use App\Http\Requests\CreateDiscussionRequest;
 use App\Reply;
 use Illuminate\Http\Request;
 use App\Discussion;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class DiscussionsController extends Controller
 {
@@ -21,9 +23,39 @@ class DiscussionsController extends Controller
      */
     public function index()
     {
-        return view('discussions.index', [
-            'discussions' => Discussion::filterByChannels()->paginate(5),
-        ]);
+
+        switch (request('filter')) {
+            case 'me':
+                $results = Discussion::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(5);
+                break;
+            case 'solved':
+                $answered = [];
+
+                foreach(Discussion::all() as $discussion) {
+                    if ($discussion->hasBestAnswer()) {
+                        array_push($answered, $discussion);
+                    }
+                }
+
+                $results = new Paginator($answered, 5);
+                break;
+            case 'unsolved':
+                $unanswered = [];
+
+                foreach(Discussion::all() as $discussion) {
+                    if (!$discussion->hasBestAnswer()) {
+                        array_push($unanswered, $discussion);
+                    }
+                }
+
+                $results = new Paginator($unanswered, 5);
+                break;
+            default:
+                $results = Discussion::orderBy('created_at', 'desc')->paginate(5);
+                break;
+        }
+
+        return view('discussions.index', ['discussions' => $results]);
     }
 
     /**
