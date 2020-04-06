@@ -18,6 +18,9 @@
                 @if (request()->path() == 'discussions')
                     <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-success btn-sm mr-5">View</a>
                 @else
+                    @if (Auth::id() == $discussion->user_id)
+                        <a href="{{ route('discussions.edit', $discussion->slug) }}" class="btn btn-success btn-sm">Edit</a>
+                    @endif
                     @if ($discussion->is_being_watched_by_auth_user())
                         <a href="{{ route('discussions.unwatch', $discussion->id) }}" class="btn btn-success btn-sm mr-5">Unwatch</a>
                     @else
@@ -37,6 +40,9 @@
                 @if (request()->path() == 'discussions')
                     <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-success btn-sm">View</a>
                 @else
+                    @if (Auth::id() == $discussion->user_id)
+                        <a href="{{ route('discussions.edit', $discussion->slug) }}" class="btn btn-success btn-sm">Edit</a>
+                    @endif
                     @if ($discussion->is_being_watched_by_auth_user())
                         <a href="{{ route('discussions.unwatch', $discussion->id) }}" class="btn btn-success btn-sm">Unwatch</a>
                     @else
