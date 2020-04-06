@@ -12,16 +12,7 @@
                     <input id="content" type="hidden" name="content" value="{{ $discussion->content }}">
                     <trix-editor input="content"></trix-editor>
                 </div>
-
-                <div class="form-group">
-                    <label for="channel">Channel</label>
-                    <select name="channel" id="channel" class="form-control">
-                        @foreach($channels as $channel)
-                            <option value="{{ $channel->id }}" @if(old('channel') == $channel->id) selected  @endif>{{ $channel->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success">Save Discussion Changes</button>
+                <button type="submit" class="btn btn-success mt-3">Save Discussion Changes</button>
             </form>
         </div>
     </div>
