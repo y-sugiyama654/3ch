@@ -111,12 +111,12 @@ class DiscussionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        return view('discussions.edit', ['discussion' => Discussion::where('slug', $slug)->first()]);
     }
 
     /**
@@ -128,7 +128,19 @@ class DiscussionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'content' => 'required',
+        ]);
+
+        $discussion = Discussion::find($id);
+
+        $discussion->content = $request->content;
+
+        $discussion->save();
+
+        session()->flash('success', 'Discussion Updated');
+
+        return redirect()->route('discussions.show', ['discussion' => $discussion]);
     }
 
     /**
