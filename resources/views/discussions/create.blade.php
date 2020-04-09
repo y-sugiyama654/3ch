@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-header">Add Discussion</div>
@@ -30,10 +34,6 @@
         </form>
     </div>
 </div>
-@endsection
-
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
 @endsection
 
 @section('script')
