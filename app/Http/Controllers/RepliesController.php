@@ -6,6 +6,7 @@ use App\Discussion;
 use App\Http\Requests\CreateDiscussionRequest;
 use App\Http\Requests\CreateReplyRequest;
 use App\Like;
+use App\Reply;
 use Notification;
 use App\Notifications\NewReplyAdded;
 use App\User;
@@ -137,7 +138,7 @@ class RepliesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('replies.edit', ['reply' => Reply::find($id)]);
     }
 
     /**
@@ -149,7 +150,19 @@ class RepliesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+           'content' => 'required',
+        ]);
+
+        $reply = Reply::find($id);
+
+        $reply->content = request()->content;
+
+        $reply->save();
+
+        session()->flash('success', 'Reply Updated.');
+
+        return redirect()->route('discussions.show', ['discussion' => $reply->discussion]);
     }
 
     /**

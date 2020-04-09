@@ -59,12 +59,25 @@
                 </div>
                 <div>
                     @auth
-                        @if(auth()->user()->id === $discussion->user_id)
-                            <form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply->id]) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-info">Mark As Best Reply</button>
-                            </form>
-                        @endif
+                        <div class="btn-toolbar">
+                            <div class="btn-group mr-1">
+                                @if(!isset($discussion->reply_id))
+                                    @if(auth()->user()->id === $discussion->user_id)
+                                        <form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-info">Best Anser</button>
+                                        </form>
+                                    @endif
+                                @endif
+                            </div>
+                            <div class="btn-group">
+                                @if(!isset($discussion->reply_id))
+                                    @if(auth()->user()->id === $reply->user_id)
+                                        <a href="{{ route('reply.edit', ['id' => $reply->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
                     @endauth
                 </div>
             </div>
