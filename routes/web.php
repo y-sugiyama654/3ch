@@ -28,7 +28,7 @@ Route::resource('discussions', 'DiscussionsController');
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/callback/github', 'Auth\LoginController@handleProviderCallback');
 
-// 全ユーザー対象権限
+// ログインユーザー対象権限
 Route::group(['middleware' => ['auth', 'can:allUser']], function () {
     Route::resource('discussions/{discussion}/replies', 'RepliesController');
 
@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth', 'can:allUser']], function () {
 
     Route::get('/reply/like/{id}', 'RepliesController@like')->name('reply.like');
     Route::get('/reply/unlike/{id}', 'RepliesController@unlike')->name('reply.unlike');
+
+    Route::get('/reply/edit/{id}', 'RepliesController@edit')->name('reply.edit');
+    Route::put('/reply/update/{id}', 'RepliesController@update')->name('reply.update');
 
     Route::get('/discussion/watch/{id}', 'WatchersController@watch')->name('discussions.watch');
     Route::get('/discussion/unwatch/{id}', 'WatchersController@unwatch')->name('discussions.unwatch');
