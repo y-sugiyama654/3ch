@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+@endsection
+
 @section('content')
 <div class="card mb-5">
     @include('partials.discussion-header')
@@ -96,10 +100,6 @@
         @endauth
     </div>
 </div>
-@endsection
-
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
 @endsection
 
 @section('script')
