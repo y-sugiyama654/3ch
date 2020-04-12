@@ -55,7 +55,7 @@
             <div class="d-flex justify-content-between">
                 <div>
                     <img height="40px" width="40px" style="border-radius: 50%" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
-                    <span class="ml-2 mr-2 font-weight-bold">{{ $discussion->bestReply->owner->name }}</span><strong><i class="fas fa-donate"></i> {{ $discussion->author->point }}P</strong>
+                    <span class="ml-2 mr-2 font-weight-bold">{{ $reply->owner->name }}</span><strong><i class="fas fa-donate"></i> {{ $discussion->author->point }}P</strong>
                 </div>
                 <div>
                     @auth
