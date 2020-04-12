@@ -4,7 +4,7 @@
 @endsection
 <div class="card-header">
 
-    @if($discussion->hasBestAnswer())
+    @if($discussion->getBestReply())
         {{--  CLOSE  --}}
         <div class="d-flex justify-content-between">
             <div class="ribbon18-content">
