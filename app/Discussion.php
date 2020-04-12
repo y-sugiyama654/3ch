@@ -78,6 +78,7 @@ class Discussion extends Model
 
         return $builder;
     }
+    
     public function is_being_watched_by_auth_user()
     {
         $id = Auth::id();
@@ -94,24 +95,4 @@ class Discussion extends Model
             return false;
         }
     }
-
-    /**
-     * 投稿にベストアンサーがついているか確認
-     *
-     * @return bool true:ベストアンサー済 false:ベストアンサー未
-     */
-    public function hasBestAnswer()
-    {
-        $result = false;
-        foreach($this->replies as $reply)
-        {
-            if($reply->discussion_id) {
-                $result = true;
-                break;
-            }
-        }
-
-        return $result;
-    }
-
 }

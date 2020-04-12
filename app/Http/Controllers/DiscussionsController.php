@@ -32,7 +32,7 @@ class DiscussionsController extends Controller
                 $answered = [];
 
                 foreach(Discussion::all() as $discussion) {
-                    if ($discussion->hasBestAnswer()) {
+                    if ($discussion->getBestReply()) {
                         array_push($answered, $discussion);
                     }
                 }
@@ -43,7 +43,7 @@ class DiscussionsController extends Controller
                 $unanswered = [];
 
                 foreach(Discussion::all() as $discussion) {
-                    if (!$discussion->hasBestAnswer()) {
+                    if (!$discussion->getBestReply()) {
                         array_push($unanswered, $discussion);
                     }
                 }
